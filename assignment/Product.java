@@ -1,7 +1,6 @@
 package assignment;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Product {
     private int productCode;
@@ -9,6 +8,7 @@ public class Product {
     private double price;
     private String category;
 
+    //Using parametrized constructor....
     public Product(int productCode, String name, double price, String category) {
         this.productCode = productCode;
         this.name = name;
@@ -16,6 +16,7 @@ public class Product {
         this.category = category;
     }
 
+    //Using getter and setter..
     public int getProductCode() {
         return productCode;
     }
@@ -48,6 +49,7 @@ public class Product {
         this.category = category;
     }
 
+    //creating arrayList.....
     public static ArrayList<Product> getProductsList() {
         // Creating user defined Product Array List
         ArrayList<Product> prods = new ArrayList<>();
@@ -76,20 +78,23 @@ public class Product {
 
     public static void main(String[] args) {
 
+        //Initilized new object..
         ProductService productService = new ProductService();
         String prodName = productService.findNameByCode(513);
         System.out.println(prodName);
+
         Product product_obj = productService.findMaxPriceProduct("laptop");
         System.out.println(product_obj);
 
         ArrayList<Product> products = productService.getProductsByCategory("clothes");
         if (products != null) {
-            Iterator itr = products.iterator();
-            while (itr.hasNext()) {
-                Product product = (Product) itr.next();
-                System.out.println("[ product code: " + product.getProductCode() + ", product name: "
-                        + product.getName() + ", product price: Rs." + product.getPrice() + ", product catagory: "
-                        + product.getCategory() + " ]");
+            for (Product product : products) {
+                System.out.println(
+                "[ product code: " + product.getProductCode() + 
+                ", product name: " + product.getName() + 
+                ", product price: Rs." + product.getPrice() + 
+                ", product category: " + product.getCategory() + " ]"
+                );
             }
         }
     }    
